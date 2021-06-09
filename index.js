@@ -1,9 +1,13 @@
 // const http = require("http");
 // ahora con express:
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
-// midleware: modulo body parser de express
+// MIDLEWARES
+// cors: accesible desde cualquier origen
+app.use(cors());
+// modulo body parser de express
 app.use(express.json());
 
 let allQuotes = [
@@ -121,7 +125,8 @@ app.use((req, res) => {
     });
 });
 
-const PORT = 3001;
+// para deploy en heroku: lo saca de una variable de entorno
+const PORT = process.env.port || 3001;
 
 //app.listen(PORT);
 // con express esta llamada es asíncrona: cuando el servidor esté levantado ejecuta la función
